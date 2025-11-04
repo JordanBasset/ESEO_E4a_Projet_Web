@@ -8,7 +8,7 @@ use Config\Config;
  * Base class for PDO-based data access objects (DAOs).
  */
 abstract class BasePDODAO {
-	private ?\PDO $db;
+	private ?\PDO $db = null;
 
 	/**
 	 * Executes a prepared statement with the given parameters.
