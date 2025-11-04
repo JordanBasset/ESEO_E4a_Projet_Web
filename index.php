@@ -10,6 +10,7 @@ $loader = new Psr4AutoloaderClass();
 $loader->register();
 
 // Register app namespace<>path bindings
+$loader->addNamespace('\\Config', __DIR__ . '/Config');
 $loader->addNamespace('\\Controllers', __DIR__ . '/Controllers');
 $loader->addNamespace('\\Helpers', __DIR__ . '/Helpers');
 
