@@ -4,6 +4,7 @@ namespace Controllers\Router;
 
 use Controllers\MainController;
 use Controllers\PersonnageController;
+use Controllers\Router\Route\RouteAddElement;
 use Controllers\Router\Route\RouteAddPerso;
 use Controllers\Router\Route\RouteIndex;
 use Controllers\Router\Route\RouteLogs;
@@ -36,6 +37,7 @@ final class Router {
 	private function createControllersList(): void {
 		$this->controllersList = [
 			'add-character' => new PersonnageController($this->templates),
+			'add-element' => new PersonnageController($this->templates),
 			'logs' => new MainController($this->templates),
 			'main' => new MainController($this->templates),
 		];
@@ -44,6 +46,7 @@ final class Router {
 	private function createRoutesList(): void {
 		$this->routesList = [
 			'add-character' => new RouteAddPerso($this->controllersList['add-character']),
+			'add-character-element' => new RouteAddElement($this->controllersList['add-element']),
 			'index' => new RouteIndex($this->controllersList['main']),
 			'logs' => new RouteLogs($this->controllersList['logs']),
 		];
