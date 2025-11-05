@@ -1,6 +1,6 @@
 <?php
 
-use Controllers\MainController;
+use Controllers\Router\Router;
 use Helpers\Psr4AutoloaderClass;
 use League\Plates\Engine;
 
@@ -21,7 +21,7 @@ $loader->addNamespace('\\League\\Plates\\', __DIR__ . '/Vendor/Plates/src');
 // Creating the template engine
 $engine = new Engine(__DIR__ . '/Views');
 
-// Creating the main controller
-$controller = new MainController($engine);
-// and rendering the index page
-$controller->index();
+// Creating the router
+$router = new Router($engine);
+// and letting it route the request
+$router->routing($_GET, $_POST);
