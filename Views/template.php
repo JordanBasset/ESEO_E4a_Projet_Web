@@ -11,6 +11,23 @@
 	<body>
 		<header>
 			<nav>
+				<ul>
+					<li>
+						<a href="/">Home</a>
+					</li>
+					<li>
+						<a href="/?action=add-character">Add character</a>
+					</li>
+					<li>
+						<a href="/?action=add-character-element">Add character element</a>
+					</li>
+					<li>
+						<a href="/?action=logs">Logs</a>
+					</li>
+					<li>
+						<a href="/?action=login">Login</a>
+					</li>
+				</ul>
 			</nav>
 		</header>
 		<main id="contenu">
