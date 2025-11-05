@@ -16,6 +16,12 @@ final class Router {
 	/** @var array<string,mixed> $controllersList List of controllers mapped by keys */
 	private array $controllersList;
 
+	/**
+	 * Creates a new router instance.
+	 *
+	 * @param Engine $templates Template engine
+	 * @param string $actionKey Router action key
+	 */
 	public function __construct(
 		private readonly Engine $templates,
 		private readonly string $actionKey = 'action'
@@ -36,6 +42,12 @@ final class Router {
 		];
 	}
 
+	/**
+	 * Handles routing requests to the appropriate route (then controller).
+	 *
+	 * @param array $get List of {@link $_GET GET} parameters
+	 * @param array $post List of {@link $_POST POST} parameters
+	 */
 	public function routing(array $get, array $post) {
 		$action = array_key_exists($this->actionKey, $get) ? $get[$this->actionKey] : 'index';
 		$route = $this->routesList[$action] ?: throw new \RuntimeException('Route not found');
