@@ -1,0 +1,44 @@
+main {
+	margin: 25px auto 0;
+	width: 85%;
+}
+
+#characters-list {
+	margin-top: 25px;
+
+	.character {
+		height: 256px;
+		margin: 0 8px;
+		padding: 0 8px;
+		width: fit-content;
+
+		&[data-character-rarity='4'] {
+			background-color: purple;
+		}
+
+		&[data-character-rarity='5'] {
+			background-color: gold;
+		}
+
+		.character-name {
+			background-color: rgba(255, 255, 255, 0.75);
+			bottom: 2.5rlh;
+			display: none;
+			margin-bottom: 0;
+			position: relative;
+			text-align: center;
+
+			img {
+				aspect-ratio: 1;
+				height: auto;
+				width: 100%;
+			}
+		}
+
+		&:hover {
+			.character-name {
+				display: block;
+			}
+		}
+	}
+}
