@@ -6,6 +6,7 @@ use Controllers\MainController;
 use Controllers\PersonnageController;
 use Controllers\Router\Route\RouteAddPerso;
 use Controllers\Router\Route\RouteIndex;
+use Controllers\Router\Route\RouteLogs;
 use League\Plates\Engine;
 
 /**
@@ -35,6 +36,7 @@ final class Router {
 	private function createControllersList(): void {
 		$this->controllersList = [
 			'add-character' => new PersonnageController($this->templates),
+			'logs' => new MainController($this->templates),
 			'main' => new MainController($this->templates),
 		];
 	}
@@ -43,6 +45,7 @@ final class Router {
 		$this->routesList = [
 			'add-character' => new RouteAddPerso($this->controllersList['add-character']),
 			'index' => new RouteIndex($this->controllersList['main']),
+			'logs' => new RouteLogs($this->controllersList['logs']),
 		];
 	}
 

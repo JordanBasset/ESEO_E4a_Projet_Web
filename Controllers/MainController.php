@@ -22,4 +22,8 @@ final readonly class MainController {
 			'nullCharacter' => $nullCharacter,
 		]);
 	}
+
+	public function displayLogs(): void {
+		echo $this->plates->render('logs');
+	}
 }
