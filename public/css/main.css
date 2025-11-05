@@ -28,10 +28,34 @@ nav {
 
 		&[data-character-rarity='4'] {
 			background-color: purple;
+
+			.character-action a {
+				color: white;
+			}
 		}
 
 		&[data-character-rarity='5'] {
 			background-color: gold;
+
+			.character-action a {
+				color: black;
+			}
+		}
+
+		.character-actions {
+			margin-left: auto;
+			position: relative;
+			top: 5px;
+			visibility: hidden;
+			width: fit-content;
+
+			ul {
+				margin: 0 0 0 auto;
+
+				li:not(:first-child) {
+					margin-left: 5px;
+				}
+			}
 		}
 
 		.character-name {
@@ -41,15 +65,20 @@ nav {
 			margin-bottom: 0;
 			position: relative;
 			text-align: center;
+		}
 
-			img {
-				aspect-ratio: 1;
-				height: auto;
-				width: 100%;
-			}
+		img {
+			aspect-ratio: 1;
+			margin-top: -1.35rlh;
+			height: auto;
+			width: 100%;
 		}
 
 		&:hover {
+			.character-actions {
+				visibility: visible;
+			}
+
 			.character-name {
 				display: block;
 			}
