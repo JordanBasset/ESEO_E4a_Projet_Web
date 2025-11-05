@@ -3,6 +3,8 @@
 namespace Controllers\Router;
 
 use Controllers\MainController;
+use Controllers\PersonnageController;
+use Controllers\Router\Route\RouteAddPerso;
 use Controllers\Router\Route\RouteIndex;
 use League\Plates\Engine;
 
@@ -32,12 +34,14 @@ final class Router {
 
 	private function createControllersList(): void {
 		$this->controllersList = [
+			'add-character' => new PersonnageController($this->templates),
 			'main' => new MainController($this->templates),
 		];
 	}
 
 	private function createRoutesList(): void {
 		$this->routesList = [
+			'add-character' => new RouteAddPerso($this->controllersList['add-character']),
 			'index' => new RouteIndex($this->controllersList['main']),
 		];
 	}
