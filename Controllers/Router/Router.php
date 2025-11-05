@@ -54,7 +54,9 @@ final class Router {
 	 */
 	public function routing(array $get, array $post) {
 		$action = array_key_exists($this->actionKey, $get) ? $get[$this->actionKey] : 'index';
-		$route = $this->routesList[$action] ?: throw new \RuntimeException('Route not found');
+		$route = array_key_exists($action, $this->routesList)
+			? $this->routesList[$action]
+			: throw new \RuntimeException('Route not found');
 		$method = $_SERVER['REQUEST_METHOD'];
 		$params = match ($method) {
 			'GET' => $get,
