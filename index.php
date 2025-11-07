@@ -1,6 +1,7 @@
 <?php
 
 use Controllers\Router\Router;
+use Exceptions\IRenderableException;
 use Helpers\Psr4AutoloaderClass;
 use League\Plates\Engine;
 
@@ -12,6 +13,7 @@ $loader->register();
 // Register app namespace<>path bindings
 $loader->addNamespace('\\Config', __DIR__ . '/Config');
 $loader->addNamespace('\\Controllers', __DIR__ . '/Controllers');
+$loader->addNamespace('\\Exceptions', __DIR__ . '/Exceptions');
 $loader->addNamespace('\\Helpers', __DIR__ . '/Helpers');
 $loader->addNamespace('\\Models', __DIR__ . '/Models');
 
@@ -23,5 +25,10 @@ $engine = new Engine(__DIR__ . '/Views');
 
 // Creating the router
 $router = new Router($engine);
-// and letting it route the request
-$router->routing($_GET, $_POST);
+try {
+	// and letting it route the request
+	$router->routing($_GET, $_POST);
+} catch (IRenderableException $e) {
+	// use the class method to render the exception
+	$e->render($engine);
+}

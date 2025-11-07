@@ -2,6 +2,8 @@
 
 namespace Controllers\Router;
 
+use Exceptions\MethodNotSupportedException;
+
 /**
  * Base class that represents a route for our router.
  */
@@ -16,7 +18,7 @@ abstract class Route {
 		return match (mb_strtoupper($method)) {
 			'GET' => $this->get($params),
 			'POST' => $this->post($params),
-			default => throw new \RuntimeException('Method not implemented'),
+			default => throw new MethodNotSupportedException('Method not supported: ' . $method),
 		};
 	}
 

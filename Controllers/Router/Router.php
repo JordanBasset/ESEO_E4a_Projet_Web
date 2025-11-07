@@ -9,6 +9,7 @@ use Controllers\Router\Route\RouteAddPerso;
 use Controllers\Router\Route\RouteIndex;
 use Controllers\Router\Route\RouteLogs;
 use Controllers\Router\Route\RouteSearch;
+use Exceptions\NotFoundException;
 use League\Plates\Engine;
 
 /**
@@ -62,7 +63,7 @@ final class Router {
 		$action = array_key_exists($this->actionKey, $get) ? $get[$this->actionKey] : 'index';
 		$route = array_key_exists($action, $this->routesList)
 			? $this->routesList[$action]
-			: throw new \RuntimeException('Route not found');
+			: throw new NotFoundException('Route not found for action: ' . htmlspecialchars($action));
 		$method = $_SERVER['REQUEST_METHOD'];
 		$params = match ($method) {
 			'GET' => $get,
