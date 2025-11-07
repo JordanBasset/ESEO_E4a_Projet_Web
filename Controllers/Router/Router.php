@@ -37,21 +37,18 @@ final class Router {
 
 	private function createControllersList(): void {
 		$this->controllersList = [
-			'add-character' => new PersonnageController($this->templates),
-			'add-element' => new PersonnageController($this->templates),
-			'logs' => new MainController($this->templates),
+			'character' => new PersonnageController($this->templates),
 			'main' => new MainController($this->templates),
-			'search' => new MainController($this->templates),
 		];
 	}
 
 	private function createRoutesList(): void {
 		$this->routesList = [
-			'add-character' => new RouteAddPerso($this->controllersList['add-character']),
-			'add-element' => new RouteAddElement($this->controllersList['add-element']),
+			'add-character' => new RouteAddPerso($this->controllersList['character']),
+			'add-element' => new RouteAddElement($this->controllersList['character']),
 			'index' => new RouteIndex($this->controllersList['main']),
-			'logs' => new RouteLogs($this->controllersList['logs']),
-			'search' => new RouteSearch($this->controllersList['search']),
+			'logs' => new RouteLogs($this->controllersList['main']),
+			'search' => new RouteSearch($this->controllersList['main']),
 		];
 	}
 
