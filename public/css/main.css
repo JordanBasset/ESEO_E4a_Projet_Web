@@ -21,10 +21,10 @@ nav {
 	margin-top: 25px;
 
 	.character {
-		height: 256px;
-		margin: 0 8px;
+		height: 240px;
+		margin: 0 8px 16px;
 		padding: 0 8px;
-		width: fit-content;
+		width: 256px;
 
 		&[data-character-rarity='4'] {
 			background-color: purple;
