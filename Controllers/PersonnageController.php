@@ -11,7 +11,8 @@ final readonly class PersonnageController {
 		echo $this->plates->render('add-element');
 	}
 
-	public function displayAddPersonnage(): void {
-		echo $this->plates->render('add-perso');
+	public function displayAddPersonnage(?string $errorMessage = null): void {
+		$viewData = $errorMessage ? ['error' => $errorMessage] : [];
+		echo $this->plates->render('add-perso', $viewData);
 	}
 }

@@ -3,6 +3,12 @@ $this->layout('template', ['title' => 'TP Mihoyo']);
 ?>
 <h1>Add Character</h1>
 
+<?php
+if (!empty($error)):
+	$this->insert('alert', ['message' => $error, 'type' => 'danger']);
+endif;
+?>
+
 <fieldset class="form-container">
 	<form action="/?action=add-character" method="post" autocomplete="off">
 		<input type="text" class="form-control" name="name" placeholder="Name"><br>
