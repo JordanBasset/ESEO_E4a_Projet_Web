@@ -3,6 +3,12 @@ $this->layout('template', ['title' => 'TP Mihoyo']);
 ?>
 <h1>Collection <?= $this->e($gameName) ?></h1>
 
+<?php
+if (!empty($alert)):
+	$this->insert('alert', ['message' => $alert['message'], 'type' => $alert['type']]);
+endif;
+?>
+
 <div class="row row-cols-4" id="characters-list">
 	<?php foreach ($characters as $character): ?>
 		<div class="character"

@@ -19,10 +19,29 @@ final readonly class PersonnageController {
 		try {
 			new PersonnageDAO()->createPersonnage($personnage);
 			$message = 'Successfully created the character.';
-			new MainController($this->plates)->index($message);
+			new MainController($this->plates)->index($message, 'success');
 		} catch (\PDOException) {
 			$message = 'Error when trying to create the character.';
 			$this->displayAddPersonnage($message);
+		}
+	}
+
+	public function deletePersonnageAndIndex(?string $id): void {
+		if (!$id) {
+			$message = 'Character ID is missing.';
+			new MainController($this->plates)->index($message, 'danger');
+			return;
+		}
+
+		try {
+			new PersonnageDAO()->deletePersonnage($id);
+			$message = 'Successfully deleted the character.';
+			$messageType = 'success';
+		} catch (\PDOException) {
+			$message = 'Error when trying to delete the character.';
+			$messageType = 'danger';
+		} finally {
+			new MainController($this->plates)->index($message, $messageType);
 		}
 	}
 

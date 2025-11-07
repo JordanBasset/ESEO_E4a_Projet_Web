@@ -6,6 +6,7 @@ use Controllers\MainController;
 use Controllers\PersonnageController;
 use Controllers\Router\Route\RouteAddElement;
 use Controllers\Router\Route\RouteAddPerso;
+use Controllers\Router\Route\RouteDeletePerso;
 use Controllers\Router\Route\RouteIndex;
 use Controllers\Router\Route\RouteLogs;
 use Controllers\Router\Route\RouteSearch;
@@ -47,6 +48,7 @@ final class Router {
 		$this->routesList = [
 			'add-character' => new RouteAddPerso($this->controllersList['character']),
 			'add-element' => new RouteAddElement($this->controllersList['character']),
+			'delete-character' => new RouteDeletePerso($this->controllersList['character']),
 			'index' => new RouteIndex($this->controllersList['main']),
 			'logs' => new RouteLogs($this->controllersList['main']),
 			'search' => new RouteSearch($this->controllersList['main']),

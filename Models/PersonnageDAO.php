@@ -49,4 +49,14 @@ class PersonnageDAO extends BasePDODAO {
 			'url_image' => $personnage->urlImg,
 		]);
 	}
+
+	/**
+	 * Removes a character from the database.
+	 *
+	 * @param string $id Identifier of the character to remove
+	 * @throws \PDOException If something went wrong while removing the character
+	 */
+	public function deletePersonnage(string $id): void {
+		$this->execRequest('DELETE FROM personnages WHERE id = :id', ['id' => $id]);
+	}
 }
