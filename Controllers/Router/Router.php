@@ -8,6 +8,7 @@ use Controllers\Router\Route\RouteAddElement;
 use Controllers\Router\Route\RouteAddPerso;
 use Controllers\Router\Route\RouteIndex;
 use Controllers\Router\Route\RouteLogs;
+use Controllers\Router\Route\RouteSearch;
 use League\Plates\Engine;
 
 /**
@@ -40,6 +41,7 @@ final class Router {
 			'add-element' => new PersonnageController($this->templates),
 			'logs' => new MainController($this->templates),
 			'main' => new MainController($this->templates),
+			'search' => new MainController($this->templates),
 		];
 	}
 
@@ -49,6 +51,7 @@ final class Router {
 			'add-element' => new RouteAddElement($this->controllersList['add-element']),
 			'index' => new RouteIndex($this->controllersList['main']),
 			'logs' => new RouteLogs($this->controllersList['logs']),
+			'search' => new RouteSearch($this->controllersList['search']),
 		];
 	}
 

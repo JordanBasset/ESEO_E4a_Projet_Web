@@ -26,4 +26,8 @@ final readonly class MainController {
 	public function displayLogs(): void {
 		echo $this->plates->render('logs');
 	}
+
+	public function displaySearch(): void {
+		echo $this->plates->render('search');
+	}
 }
