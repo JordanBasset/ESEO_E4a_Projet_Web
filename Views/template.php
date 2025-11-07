@@ -20,7 +20,7 @@
 						<a href="/?action=add-character">Add character</a>
 					</li>
 					<li>
-						<a href="/?action=add-character-element">Add character element</a>
+						<a href="/?action=add-element">Add element</a>
 					</li>
 					<li>
 						<a href="/?action=logs">Logs</a>

@@ -46,7 +46,7 @@ final class Router {
 	private function createRoutesList(): void {
 		$this->routesList = [
 			'add-character' => new RouteAddPerso($this->controllersList['add-character']),
-			'add-character-element' => new RouteAddElement($this->controllersList['add-element']),
+			'add-element' => new RouteAddElement($this->controllersList['add-element']),
 			'index' => new RouteIndex($this->controllersList['main']),
 			'logs' => new RouteLogs($this->controllersList['logs']),
 		];
