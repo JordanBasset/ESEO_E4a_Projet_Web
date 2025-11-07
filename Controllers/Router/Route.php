@@ -2,6 +2,7 @@
 
 namespace Controllers\Router;
 
+use Exceptions\InvalidFormValueException;
 use Exceptions\MethodNotSupportedException;
 
 /**
@@ -48,12 +49,12 @@ abstract class Route {
 	protected function getParameter(array $params, string $name, bool $canBeEmpty = true): mixed {
 		if (array_key_exists($name, $params)) {
 			if (!$canBeEmpty && empty($params[$name])) {
-				throw new \RuntimeException('Parameter is empty');
+				throw InvalidFormValueException::notEmpty($name);
 			}
 
 			return $params[$name];
 		}
 
-		throw new \RuntimeException('Parameter not found');
+		throw InvalidFormValueException::missing($name);
 	}
 }
