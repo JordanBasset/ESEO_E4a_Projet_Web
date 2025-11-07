@@ -73,4 +73,16 @@ class Personnage {
 		$personnage->urlImg = $data->url_image;
 		return $personnage;
 	}
+
+	public static function fromRequestParams(string $id, string $name, string $element, string $unitClass, int $rarity, string $origin, string $imageUrl): static {
+		$personnage = new static();
+		$personnage->id = $id;
+		$personnage->name = $name;
+		$personnage->element = $element;
+		$personnage->unitClass = $unitClass;
+		$personnage->rarity = $rarity;
+		$personnage->origin = $origin;
+		$personnage->urlImg = $imageUrl;
+		return $personnage;
+	}
 }

@@ -4,6 +4,7 @@ namespace Controllers\Router\Route;
 
 use Controllers\PersonnageController;
 use Controllers\Router\Route;
+use Exceptions\InvalidFormValueException;
 
 /**
  * Route for the "Add Character" page.
@@ -22,7 +23,18 @@ final class RouteAddPerso extends Route {
 	 * @inheritDoc
 	 */
 	protected function post(array $params = []): void {
-		// TODO: Handle form submit
-		$this->controller->displayAddPersonnage();
+		try {
+			$name = $this->getParameter($params, 'name', false);
+			$element = $this->getParameter($params, 'element', false);
+			$unitClass = $this->getParameter($params, 'unit_class', false);
+			$rarity = (int)$this->getParameter($params, 'rarity', false);
+			$origin = $this->getParameter($params, 'origin', false);
+			$imageUrl = $this->getParameter($params, 'image_url', false);
+		} catch (InvalidFormValueException $e) {
+			$this->controller->displayAddPersonnage($e->getMessage());
+			return;
+		}
+
+		$this->controller->addPersonnage($name, $element, $unitClass, $rarity, $origin, $imageUrl);
 	}
 }
