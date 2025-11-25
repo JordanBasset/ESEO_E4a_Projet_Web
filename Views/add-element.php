@@ -4,7 +4,7 @@ $this->layout('template', ['title' => 'TP Mihoyo']);
 $actionType = $editMode ? 'edit' : 'add';
 ?>
 
-<h1><?= ucwords($actionType) ?> <?= ucwords($editType) ?></h1>
+<h1><?= ucwords($actionType) ?> <?= ucwords(str_replace('-', ' ', $editType)) ?></h1>
 
 <?php
 if (!empty($error)):
@@ -17,6 +17,6 @@ endif;
 		<input type="text" class="form-control" name="name" placeholder="Name"><br>
 		<input type="url" class="form-control" name="image_url" placeholder="Image URL"><br>
 		<input type="submit" class="btn btn-outline-primary w-100" name="submit"
-			   value="<?= ucwords($actionType) ?> <?= ucwords($editType) ?>">
+			   value="<?= ucwords($actionType) ?> <?= ucwords(str_replace('-', ' ', $editType)) ?>">
 	</form>
 </fieldset>
