@@ -24,6 +24,9 @@
 						<a href="/?action=add-element">Add element</a>
 					</li>
 					<li>
+						<a href="/?action=add-origin">Add origin</a>
+					</li>
+					<li>
 						<a href="/?action=search">Search</a>
 					</li>
 					<li>
