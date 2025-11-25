@@ -27,9 +27,6 @@
 						<a href="/?action=add-origin">Add origin</a>
 					</li>
 					<li>
-						<a href="/?action=search">Search</a>
-					</li>
-					<li>
 						<a href="/?action=logs">Logs</a>
 					</li>
 					<li>
