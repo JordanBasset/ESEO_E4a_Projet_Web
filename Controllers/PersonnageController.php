@@ -47,6 +47,32 @@ final readonly class PersonnageController {
 
 	public function displayAddPersonnage(?string $errorMessage = null): void {
 		$viewData = $errorMessage ? ['error' => $errorMessage] : [];
-		echo $this->plates->render('add-perso', $viewData);
+		echo $this->plates->render('add-perso', [
+			'editMode' => false,
+			...$viewData,
+		]);
+	}
+
+	public function displayEditPersonnage(string $id): void {
+		$personnage = null;
+		$message = null;
+		try {
+			$personnage = new PersonnageDAO()->getByID($id);
+		} catch (\PDOException) {
+			$message = 'Error when trying to fetch the character.';
+		}
+
+		if ($message === null && $personnage === null) {
+			$message = 'Character not found.';
+		}
+		if ($message !== null) {
+			$this->displayAddPersonnage($message);
+			return;
+		}
+
+		echo $this->plates->render('add-perso', [
+			'editMode' => true,
+			'personnage' => $personnage,
+		]);
 	}
 }
