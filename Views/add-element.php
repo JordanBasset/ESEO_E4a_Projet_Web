@@ -7,12 +7,6 @@ $this->layout('template', ['title' => 'TP Mihoyo']);
 	<form action="/?action=add-character-element" method="post" autocomplete="off">
 		<input type="text" class="form-control" name="name" placeholder="Name"><br>
 		<input type="url" class="form-control" name="image_url" placeholder="Image URL"><br>
-		<select class="form-select" name="element">
-			<option value="" disabled selected>Element</option>
-			<option value="hydro">Hydro</option>
-			<option value="electro">Electro</option>
-			<option value="cryo">Cryo</option>
-		</select><br>
 		<input type="submit" class="btn btn-outline-primary w-100" name="submit" value="Add Element">
 	</form>
 </fieldset>
