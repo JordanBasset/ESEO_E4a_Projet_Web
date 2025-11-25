@@ -9,11 +9,13 @@ use Controllers\PersonnageController;
 use Controllers\Router\Route\RouteAddElement;
 use Controllers\Router\Route\RouteAddOrigin;
 use Controllers\Router\Route\RouteAddPerso;
+use Controllers\Router\Route\RouteAddUnitClass;
 use Controllers\Router\Route\RouteDeletePerso;
 use Controllers\Router\Route\RouteEditPerso;
 use Controllers\Router\Route\RouteIndex;
 use Controllers\Router\Route\RouteLogs;
 use Controllers\Router\Route\RouteSearch;
+use Controllers\UnitClassController;
 use Exceptions\NotFoundException;
 use League\Plates\Engine;
 
@@ -47,6 +49,7 @@ final class Router {
 			'element' => new ElementController($this->templates),
 			'main' => new MainController($this->templates),
 			'origin' => new OriginController($this->templates),
+			'unit-class' => new UnitClassController($this->templates),
 		];
 	}
 
@@ -55,6 +58,7 @@ final class Router {
 			'add-character' => new RouteAddPerso($this->controllersList['character']),
 			'add-element' => new RouteAddElement($this->controllersList['element']),
 			'add-origin' => new RouteAddOrigin($this->controllersList['origin']),
+			'add-unit-class' => new RouteAddUnitClass($this->controllersList['unit-class']),
 			'delete-character' => new RouteDeletePerso($this->controllersList['character']),
 			'edit-character' => new RouteEditPerso($this->controllersList['character']),
 			'index' => new RouteIndex($this->controllersList['main']),

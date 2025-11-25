@@ -30,4 +30,17 @@ class UnitClassDAO extends BasePDODAO {
 		$data = $statement->fetchObject();
 		return $data !== false ? UnitClass::fromDBObject($data) : null;
 	}
+
+	/**
+	 * Creates a new unit class in the database.
+	 *
+	 * @param UnitClass $unitClass Unit class to create
+	 * @throws \PDOException If something went wrong while creating the unit class
+	 */
+	public function createUnitClass(UnitClass $unitClass): void {
+		$this->execRequest('INSERT INTO unit_classes (name, url_img) VALUES (:name, :url_img)', [
+			'name' => $unitClass->name,
+			'url_img' => $unitClass->urlImg,
+		]);
+	}
 }
