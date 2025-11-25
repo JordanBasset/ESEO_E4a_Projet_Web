@@ -17,6 +17,10 @@ nav {
 	}
 }
 
+h1 {
+	text-align: center;
+}
+
 #characters-list {
 	margin-top: 25px;
 
