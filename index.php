@@ -2,6 +2,7 @@
 
 use Controllers\Router\Router;
 use Exceptions\IRenderableException;
+use Helpers\Logger;
 use Helpers\Psr4AutoloaderClass;
 use League\Plates\Engine;
 
@@ -24,8 +25,11 @@ $loader->addNamespace('\\League\\Plates\\', __DIR__ . '/Vendor/Plates/src');
 // Creating the template engine
 $engine = new Engine(__DIR__ . '/Views');
 
+// Creating the logging system
+$logger = new Logger(__DIR__ . '/logs');
+
 // Creating the router
-$router = new Router($engine);
+$router = new Router($engine, $logger);
 try {
 	// and letting it route the request
 	$router->routing($_GET, $_POST);

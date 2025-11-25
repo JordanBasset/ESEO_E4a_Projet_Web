@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Helpers\Logger;
 use League\Plates\Engine;
 use Models\Element;
 use Models\ElementDAO;
@@ -14,7 +15,7 @@ use Models\UnitClassDAO;
 use Services\PersonnageService;
 
 final readonly class PersonnageController {
-	public function __construct(private Engine $plates) {}
+	public function __construct(private Engine $plates, private Logger $logger) {}
 
 	public function addPersonnage(string $name, int $element, int $unitClass, int $rarity, int $origin, string $imageUrl): void {
 		$id = uniqid(more_entropy: true);
@@ -31,9 +32,14 @@ final readonly class PersonnageController {
 		$personnage = Personnage::fromRequestParams($id, $name, $elementObject, $unitClassObject, $rarity, $originObject, $imageUrl);
 		try {
 			new PersonnageDAO()->createPersonnage($personnage);
+
+			$this->logger->log(true, 'CREATE', 'Personnage', 'Created personnage: ' . $name);
+
 			$message = 'Successfully created the character.';
 			new MainController($this->plates)->index($message, 'success');
 		} catch (\PDOException) {
+			$this->logger->log(false, 'CREATE', 'Personnage', 'Failed to create personnage: ' . $name);
+
 			$message = 'Error when trying to create the character.';
 			$this->displayAddPersonnage($message);
 		}
@@ -54,6 +60,8 @@ final readonly class PersonnageController {
 			$message = 'Error when trying to delete the character.';
 			$messageType = 'danger';
 		} finally {
+			$this->logger->log($messageType === 'success', 'DELETE', 'Personnage', $message . ' ' . $id);
+
 			new MainController($this->plates)->index($message, $messageType);
 		}
 	}
@@ -107,9 +115,19 @@ final readonly class PersonnageController {
 		try {
 			new PersonnageDAO()->editPersonnage($personnageData);
 
+			$this->logger->log(
+				true, 'EDIT', 'Personnage',
+				'Edited personnage: ' . $name . ' (' . $id . ')'
+			);
+
 			$message = 'Successfully edited the character.';
 			new MainController($this->plates)->index($message, 'success');
 		} catch (\PDOException) {
+			$this->logger->log(
+				false, 'EDIT', 'Personnage',
+				'Failed to edit personnage: ' . $name . ' (' . $id . ')'
+			);
+
 			$this->displayEditPersonnage($id, 'Error when trying to edit the character.');
 		}
 	}

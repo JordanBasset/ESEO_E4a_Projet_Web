@@ -17,6 +17,7 @@ use Controllers\Router\Route\RouteLogs;
 use Controllers\Router\Route\RouteSearch;
 use Controllers\UnitClassController;
 use Exceptions\NotFoundException;
+use Helpers\Logger;
 use League\Plates\Engine;
 
 /**
@@ -33,10 +34,12 @@ final class Router {
 	 * Creates a new router instance.
 	 *
 	 * @param Engine $templates Template engine
+	 * @param Logger $logger Logger instance
 	 * @param string $actionKey Router action key
 	 */
 	public function __construct(
 		private readonly Engine $templates,
+		private readonly Logger $logger,
 		private readonly string $actionKey = 'action'
 	) {
 		$this->createControllersList();
@@ -45,11 +48,11 @@ final class Router {
 
 	private function createControllersList(): void {
 		$this->controllersList = [
-			'character' => new PersonnageController($this->templates),
-			'element' => new ElementController($this->templates),
+			'character' => new PersonnageController($this->templates, $this->logger),
+			'element' => new ElementController($this->templates, $this->logger),
 			'main' => new MainController($this->templates),
-			'origin' => new OriginController($this->templates),
-			'unit-class' => new UnitClassController($this->templates),
+			'origin' => new OriginController($this->templates, $this->logger),
+			'unit-class' => new UnitClassController($this->templates, $this->logger),
 		];
 	}
 
