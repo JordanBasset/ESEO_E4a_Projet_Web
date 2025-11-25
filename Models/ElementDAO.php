@@ -30,4 +30,17 @@ class ElementDAO extends BasePDODAO {
 		$data = $statement->fetchObject();
 		return $data !== false ? Element::fromDBObject($data) : null;
 	}
+
+	/**
+	 * Creates a new element in the database.
+	 *
+	 * @param Element $element Element to create
+	 * @throws \PDOException If something went wrong while creating the element
+	 */
+	public function createElement(Element $element): void {
+		$this->execRequest('INSERT INTO elements (name, url_img) VALUES (:name, :url_img)', [
+			'name' => $element->name,
+			'url_img' => $element->urlImg,
+		]);
+	}
 }
