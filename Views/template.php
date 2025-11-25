@@ -27,6 +27,9 @@
 						<a href="/?action=add-origin">Add origin</a>
 					</li>
 					<li>
+						<a href="/?action=add-unit-class">Add unit class</a>
+					</li>
+					<li>
 						<a href="/?action=logs">Logs</a>
 					</li>
 					<li>
