@@ -4,8 +4,10 @@ namespace Controllers\Router;
 
 use Controllers\ElementController;
 use Controllers\MainController;
+use Controllers\OriginController;
 use Controllers\PersonnageController;
 use Controllers\Router\Route\RouteAddElement;
+use Controllers\Router\Route\RouteAddOrigin;
 use Controllers\Router\Route\RouteAddPerso;
 use Controllers\Router\Route\RouteDeletePerso;
 use Controllers\Router\Route\RouteEditPerso;
@@ -44,6 +46,7 @@ final class Router {
 			'character' => new PersonnageController($this->templates),
 			'element' => new ElementController($this->templates),
 			'main' => new MainController($this->templates),
+			'origin' => new OriginController($this->templates),
 		];
 	}
 
@@ -51,6 +54,7 @@ final class Router {
 		$this->routesList = [
 			'add-character' => new RouteAddPerso($this->controllersList['character']),
 			'add-element' => new RouteAddElement($this->controllersList['element']),
+			'add-origin' => new RouteAddOrigin($this->controllersList['origin']),
 			'delete-character' => new RouteDeletePerso($this->controllersList['character']),
 			'edit-character' => new RouteEditPerso($this->controllersList['character']),
 			'index' => new RouteIndex($this->controllersList['main']),

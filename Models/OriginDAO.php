@@ -30,4 +30,17 @@ class OriginDAO extends BasePDODAO {
 		$data = $statement->fetchObject();
 		return $data !== false ? Origin::fromDBObject($data) : null;
 	}
+
+	/**
+	 * Creates a new origin in the database.
+	 *
+	 * @param Origin $origin Origin to create
+	 * @throws \PDOException If something went wrong while creating the origin
+	 */
+	public function createOrigin(Origin $origin): void {
+		$this->execRequest('INSERT INTO origins (name, url_img) VALUES (:name, :url_img)', [
+			'name' => $origin->name,
+			'url_img' => $origin->urlImg,
+		]);
+	}
 }
