@@ -53,7 +53,7 @@ final readonly class PersonnageController {
 		]);
 	}
 
-	public function displayEditPersonnage(string $id): void {
+	public function displayEditPersonnage(string $id, ?string $errorMessage = null): void {
 		$personnage = null;
 		$message = null;
 		try {
@@ -70,9 +70,24 @@ final readonly class PersonnageController {
 			return;
 		}
 
+		$viewData = $errorMessage !== null ? ['error' => $errorMessage] : [];
 		echo $this->plates->render('add-perso', [
 			'editMode' => true,
 			'personnage' => $personnage,
+			...$viewData,
 		]);
+	}
+
+	public function editPersonnage(string $id, string $name, string $element, string $unitClass, int $rarity, string $origin, string $urlImg): void {
+		$personnageData = compact('id', 'name', 'element', 'unitClass', 'rarity', 'origin', 'urlImg');
+
+		try {
+			new PersonnageDAO()->editPersonnage($personnageData);
+
+			$message = 'Successfully edited the character.';
+			new MainController($this->plates)->index($message, 'success');
+		} catch (\PDOException) {
+			$this->displayEditPersonnage($id, 'Error when trying to edit the character.');
+		}
 	}
 }

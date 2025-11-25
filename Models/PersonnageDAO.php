@@ -59,4 +59,23 @@ class PersonnageDAO extends BasePDODAO {
 	public function deletePersonnage(string $id): void {
 		$this->execRequest('DELETE FROM personnages WHERE id = :id', ['id' => $id]);
 	}
+
+	/**
+	 * Edits an existing character in the database.
+	 *
+	 * @param array $personnageData Character data to update. Must contain all the characters' fields.
+	 * @throws \PDOException If something went wrong while updating the character.
+	 */
+	public function editPersonnage(array $personnageData): void {
+		$sql = 'UPDATE personnages SET name = :name, element = :element, unit_class = :unit_class, origin = :origin, rarity = :rarity, url_image = :url_image WHERE id = :id';
+		$this->execRequest($sql, [
+			'id' => $personnageData['id'],
+			'name' => $personnageData['name'],
+			'element' => $personnageData['element'],
+			'unit_class' => $personnageData['unitClass'],
+			'origin' => $personnageData['origin'],
+			'rarity' => $personnageData['rarity'],
+			'url_image' => $personnageData['urlImg'],
+		]);
+	}
 }
