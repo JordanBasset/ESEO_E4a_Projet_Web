@@ -2,14 +2,14 @@
 
 namespace Controllers\Router\Route;
 
-use Controllers\PersonnageController;
+use Controllers\ElementController;
 use Controllers\Router\Route;
 
 /**
  * Route for the "Add Element" page.
  */
 final class RouteAddElement extends Route {
-	public function __construct(private readonly PersonnageController $controller) {}
+	public function __construct(private readonly ElementController $controller) {}
 
 	/**
 	 * @inheritDoc

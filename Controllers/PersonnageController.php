@@ -9,10 +9,6 @@ use Models\PersonnageDAO;
 final readonly class PersonnageController {
 	public function __construct(private Engine $plates) {}
 
-	public function displayAddElement(): void {
-		echo $this->plates->render('add-element');
-	}
-
 	public function addPersonnage(string $name, string $element, string $unitClass, int $rarity, string $origin, string $imageUrl): void {
 		$id = uniqid(more_entropy: true);
 		$personnage = Personnage::fromRequestParams($id, $name, $element, $unitClass, $rarity, $origin, $imageUrl);
