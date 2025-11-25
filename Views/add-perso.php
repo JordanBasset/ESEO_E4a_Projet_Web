@@ -5,8 +5,8 @@ $actionType = $editMode ? 'edit' : 'add';
 $characterProperty = function ($personnage, $key) {
 	return $personnage !== null ? 'value="' . $this->e($personnage->$key) . '"' : '';
 };
-$characterSelected = static function ($personnage, $key, $value) {
-	return $personnage !== null && $personnage->$key === $value ? 'selected' : '';
+$characterSelected = static function ($personnage, $key, $id) {
+	return $personnage !== null && $personnage->$key->id === $id ? 'selected' : '';
 };
 ?>
 
@@ -26,17 +26,31 @@ endif;
 		<input type="text" class="form-control" name="name" placeholder="Name"
 			<?= $characterProperty(@$personnage, 'name') ?>><br>
 		<select class="form-select" name="element">
-			<option value="" disabled <?= $editMode === false ? 'selected' : '' ?>>Element</option>
-			<option value="hydro" <?= $characterSelected(@$personnage, 'element', 'Hydro') ?>>Hydro</option>
-			<option value="electro" <?= $characterSelected(@$personnage, 'element', 'Electro') ?>>Electro</option>
-			<option value="cryo" <?= $characterSelected(@$personnage, 'element', 'Cryo') ?>>Cryo</option>
+			<option value="" disabled <?= $editMode === false ? 'selected' : '' ?>>Choose an element</option>
+			<?php foreach ($elements as $element): ?>
+				<option value="<?= $element->id ?>" <?= $characterSelected(@$personnage, 'element', $element->id) ?>>
+					<?= ucfirst($element->name) ?>
+				</option>
+			<?php endforeach; ?>
 		</select><br>
-		<input type="text" class="form-control" name="unit_class" placeholder="Weapon"
-			<?= $characterProperty(@$personnage, 'unitClass') ?>><br>
+		<select class="form-select" name="unit_class">
+			<option value="" disabled <?= $editMode === false ? 'selected' : '' ?>>Choose a unit class</option>
+			<?php foreach ($unitClasses as $unitClass): ?>
+				<option value="<?= $unitClass->id ?>" <?= $characterSelected(@$personnage, 'unitClass', $unitClass->id) ?>>
+					<?= ucfirst($unitClass->name) ?>
+				</option>
+			<?php endforeach; ?>
+		</select><br>
 		<input type="number" class="form-control" name="rarity" min="3" max="5" step="1" placeholder="Quality"
 			<?= $characterProperty(@$personnage, 'rarity') ?>><br>
-		<input type="text" class="form-control" name="origin" placeholder="Region"
-			<?= $characterProperty(@$personnage, 'origin') ?>><br>
+		<select class="form-select" name="origin">
+			<option value="" disabled <?= $editMode === false ? 'selected' : '' ?>>Choose an origin</option>
+			<?php foreach ($origins as $origin): ?>
+				<option value="<?= $origin->id ?>" <?= $characterSelected(@$personnage, 'origin', $origin->id) ?>>
+					<?= ucfirst($origin->name) ?>
+				</option>
+			<?php endforeach; ?>
+		</select><br>
 		<input type="url" class="form-control" name="image_url" placeholder="Image URL"
 			<?= $characterProperty(@$personnage, 'urlImg') ?>><br>
 		<input type="submit" class="btn btn-outline-primary w-100" name="submit"

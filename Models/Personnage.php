@@ -23,17 +23,17 @@ class Personnage {
 	}
 
 	/**
-	 * @var string Character element (Element in Genshin Impact).
+	 * @var Element Character element (Element in Genshin Impact).
 	 */
-	public string $element {
+	public Element $element {
 		get => $this->element;
 		set => $this->element = $value;
 	}
 
 	/**
-	 * @var string Character unit class (Weapon in Genshin Impact).
+	 * @var UnitClass Character unit class (Weapon in Genshin Impact).
 	 */
-	public string $unitClass {
+	public UnitClass $unitClass {
 		get => $this->unitClass;
 		set => $this->unitClass = $value;
 	}
@@ -47,9 +47,9 @@ class Personnage {
 	}
 
 	/**
-	 * @var ?string Character origin (Region in Genshin Impact).
+	 * @var Origin Character origin (Region in Genshin Impact).
 	 */
-	public ?string $origin {
+	public Origin $origin {
 		get => $this->origin;
 		set => $this->origin = $value;
 	}
@@ -74,7 +74,7 @@ class Personnage {
 		return $personnage;
 	}
 
-	public static function fromRequestParams(string $id, string $name, string $element, string $unitClass, int $rarity, string $origin, string $imageUrl): static {
+	public static function fromRequestParams(string $id, string $name, Element $element, UnitClass $unitClass, int $rarity, Origin $origin, string $imageUrl): static {
 		$personnage = new static();
 		$personnage->id = $id;
 		$personnage->name = $name;

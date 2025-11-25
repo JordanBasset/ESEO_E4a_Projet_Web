@@ -16,6 +16,7 @@ $loader->addNamespace('\\Controllers', __DIR__ . '/Controllers');
 $loader->addNamespace('\\Exceptions', __DIR__ . '/Exceptions');
 $loader->addNamespace('\\Helpers', __DIR__ . '/Helpers');
 $loader->addNamespace('\\Models', __DIR__ . '/Models');
+$loader->addNamespace('\\Services', __DIR__ . '/Services');
 
 // Register vendors namespace<>path bindings
 $loader->addNamespace('\\League\\Plates\\', __DIR__ . '/Vendor/Plates/src');

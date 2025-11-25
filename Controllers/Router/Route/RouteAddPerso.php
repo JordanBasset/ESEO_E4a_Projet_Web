@@ -25,10 +25,10 @@ final class RouteAddPerso extends Route {
 	protected function post(array $params = []): void {
 		try {
 			$name = $this->getParameter($params, 'name', false);
-			$element = $this->getParameter($params, 'element', false);
-			$unitClass = $this->getParameter($params, 'unit_class', false);
+			$element = (int)$this->getParameter($params, 'element', false);
+			$unitClass = (int)$this->getParameter($params, 'unit_class', false);
 			$rarity = (int)$this->getParameter($params, 'rarity', false);
-			$origin = $this->getParameter($params, 'origin', false);
+			$origin = (int)$this->getParameter($params, 'origin', false);
 			$imageUrl = $this->getParameter($params, 'image_url', false);
 		} catch (InvalidFormValueException $e) {
 			$this->controller->displayAddPersonnage($e->getMessage());
