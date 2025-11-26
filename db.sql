@@ -110,3 +110,15 @@ ALTER TABLE personnages
 DROP COLUMN element_tmp,
 DROP COLUMN origin_tmp,
 DROP COLUMN unit_class_tmp;
+
+-- Create "users" table
+CREATE TABLE users (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	username VARCHAR(255) UNIQUE NOT NULL,
+	hash_pwd VARCHAR(255) NOT NULL
+) ENGINE = InnoDB CHARSET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- Insert some user data
+INSERT INTO users (username, hash_pwd) VALUES
+('admin', '$2y$12$P5hKMKw/sIxdwcYTlxsLF.kFdf/q11LjiZ.tZOwKUCPsHEgSj5k8e'),
+('test', '$2y$12$mOunMLdKB7i39wPZbrFQP.fVHJdWDIfsmqOXydjp7C0c5F4PUlq.O');

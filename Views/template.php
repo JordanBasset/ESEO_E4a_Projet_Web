@@ -32,9 +32,18 @@
 					<li>
 						<a href="/?action=logs">Logs</a>
 					</li>
-					<li>
-						<a href="/?action=login">Login</a>
-					</li>
+					<?php if (!empty($_SESSION['userUID'])): ?>
+						<li>
+							<a href="/?action=protected">Protected</a>
+						</li>
+						<li>
+							<a href="/?action=logout">Logout</a>
+						</li>
+					<?php else: ?>
+						<li>
+							<a href="/?action=login">Login</a>
+						</li>
+					<?php endif; ?>
 				</ul>
 			</nav>
 		</header>

@@ -6,6 +6,8 @@ use Helpers\Logger;
 use Helpers\Psr4AutoloaderClass;
 use League\Plates\Engine;
 
+session_start();
+
 // Create and register our autoloader
 require_once __DIR__ . '/Helpers/Psr4AutoloaderClass.php';
 $loader = new Psr4AutoloaderClass();

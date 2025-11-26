@@ -27,3 +27,12 @@ Now modify the `%HOSTNAME%`, `%DB_NAME%`, `%USERNAME%` and `%PASSWORD%` placehol
 ### Import database schema
 
 Import the SQL script located in the file `db.sql` in the root folder of the project into your database.
+
+## Login to the application
+
+Use one of the following credentials to login:
+
+| Username | Password |
+|----------|----------|
+| `admin`  | `admin`  |
+| `test`   | `test`   |

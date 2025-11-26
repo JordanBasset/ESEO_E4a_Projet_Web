@@ -2,6 +2,7 @@
 
 namespace Controllers\Router;
 
+use Controllers\AuthController;
 use Controllers\ElementController;
 use Controllers\MainController;
 use Controllers\OriginController;
@@ -13,6 +14,8 @@ use Controllers\Router\Route\RouteAddUnitClass;
 use Controllers\Router\Route\RouteDeletePerso;
 use Controllers\Router\Route\RouteEditPerso;
 use Controllers\Router\Route\RouteIndex;
+use Controllers\Router\Route\RouteLogin;
+use Controllers\Router\Route\RouteLogout;
 use Controllers\Router\Route\RouteLogs;
 use Controllers\UnitClassController;
 use Exceptions\NotFoundException;
@@ -47,6 +50,7 @@ final class Router {
 
 	private function createControllersList(): void {
 		$this->controllersList = [
+			'auth' => new AuthController($this->templates),
 			'character' => new PersonnageController($this->templates, $this->logger),
 			'element' => new ElementController($this->templates, $this->logger),
 			'main' => new MainController($this->templates, $this->logger),
@@ -64,6 +68,8 @@ final class Router {
 			'delete-character' => new RouteDeletePerso($this->controllersList['character']),
 			'edit-character' => new RouteEditPerso($this->controllersList['character']),
 			'index' => new RouteIndex($this->controllersList['main']),
+			'login' => new RouteLogin($this->controllersList['auth']),
+			'logout' => new RouteLogout($this->controllersList['auth']),
 			'logs' => new RouteLogs($this->controllersList['main']),
 		];
 	}
