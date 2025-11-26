@@ -62,6 +62,12 @@ class Personnage {
 		set => $this->urlImg = $value;
 	}
 
+	/**
+	 * Converts character's DB data to an instance of {@link static Personnage}.
+	 *
+	 * @param \stdClass $data Character data from the database
+	 * @return static Built character instance
+	 */
 	public static function fromDBObject(\stdClass $data): static {
 		$personnage = new static();
 		$personnage->id = $data->id;
@@ -74,6 +80,18 @@ class Personnage {
 		return $personnage;
 	}
 
+	/**
+	 * Creates a new instance of {@link static Personnage} from the request parameters.
+	 *
+	 * @param string $id Character's ID
+	 * @param string $name Character's name
+	 * @param Element $element Character's element
+	 * @param UnitClass $unitClass Character's unit class
+	 * @param int $rarity Character's rarity
+	 * @param Origin $origin Character's origin
+	 * @param string $imageUrl Character's image URL
+	 * @return static Built character instance
+	 */
 	public static function fromRequestParams(string $id, string $name, Element $element, UnitClass $unitClass, int $rarity, Origin $origin, string $imageUrl): static {
 		$personnage = new static();
 		$personnage->id = $id;
