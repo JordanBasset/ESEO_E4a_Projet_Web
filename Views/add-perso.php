@@ -1,7 +1,8 @@
 <?php
-$this->layout('template', ['title' => 'TP Mihoyo']);
-
 $actionType = $editMode ? 'edit' : 'add';
+
+$this->layout('template', ['title' => ucwords($actionType) . ' character']);
+
 $characterProperty = function ($personnage, $key) {
 	return $personnage !== null ? 'value="' . $this->e($personnage->$key) . '"' : '';
 };

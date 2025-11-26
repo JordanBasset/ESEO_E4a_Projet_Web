@@ -1,5 +1,5 @@
 <?php
-$this->layout('template', ['title' => 'TP Mihoyo']);
+$this->layout('template');
 ?>
 
 <h1>Protected Space</h1>

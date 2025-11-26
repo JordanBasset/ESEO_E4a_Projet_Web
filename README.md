@@ -1,4 +1,4 @@
-# TP Mihoyo
+# Collections Mihoyo
 
 ## Project requirements
 

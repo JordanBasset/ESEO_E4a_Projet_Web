@@ -1,7 +1,9 @@
 <?php
-$this->layout('template', ['title' => 'TP Mihoyo']);
-
 $actionType = $editMode ? 'edit' : 'add';
+
+$this->layout('template', [
+	'title' => ucwords($actionType) . ' ' . str_replace('-', ' ', $editType)
+]);
 ?>
 
 <h1><?= ucwords($actionType) ?> <?= ucwords(str_replace('-', ' ', $editType)) ?></h1>

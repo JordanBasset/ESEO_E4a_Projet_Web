@@ -1,6 +1,7 @@
 <?php
-$this->layout('template', ['title' => 'TP Mihoyo']);
+$this->layout('template');
 ?>
+
 <h1>Collection <?= $this->e($gameName) ?></h1>
 
 <?php
