@@ -16,8 +16,16 @@ endif;
 			 data-character-id="<?= $character->id ?>"
 			 data-character-rarity="<?= $character->rarity ?>">
 			<nav class="character-actions">
-				<span class="character-rarity">
+				<span class="character-infos">
 					<?= $character->rarity ?> <i class="bi bi-star"></i>
+					<img class="character-element"
+						 src="<?= $character->element->urlImg ?>"
+						 alt="<?= $character->element->name ?>"
+						 title="<?= $character->element->name ?>">
+					<img class="character-unit-class"
+						 src="<?= $character->unitClass->urlImg ?>"
+						 alt="<?= $character->unitClass->name ?>"
+						 title="<?= $character->unitClass->name ?>">
 				</span>
 				<ul>
 					<li class="character-action">

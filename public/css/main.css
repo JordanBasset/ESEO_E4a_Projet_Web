@@ -33,7 +33,7 @@ h1 {
 		&[data-character-rarity='4'] {
 			background-color: purple;
 
-			.character-rarity,
+			.character-infos,
 			.character-action a {
 				color: white;
 			}
@@ -42,7 +42,7 @@ h1 {
 		&[data-character-rarity='5'] {
 			background-color: gold;
 
-			.character-rarity,
+			.character-infos,
 			.character-action a {
 				color: black;
 			}
@@ -56,6 +56,17 @@ h1 {
 			top: 5px;
 			visibility: hidden;
 			width: 100%;
+
+			.character-infos img {
+				position: relative;
+				top: 10px;
+				height: 24px;
+				width: 24px;
+
+				&.character-unit-class {
+					margin-left: -0.4rem;
+				}
+			}
 
 			ul {
 				margin: 0 0 0 auto;
