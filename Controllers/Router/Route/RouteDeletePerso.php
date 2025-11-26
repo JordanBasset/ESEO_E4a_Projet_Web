@@ -6,6 +6,9 @@ use Controllers\PersonnageController;
 use Controllers\Router\Route;
 use Exceptions\MethodNotSupportedException;
 
+/**
+ * Route for the "Delete Character" page.
+ */
 class RouteDeletePerso extends Route {
 	public function __construct(private readonly PersonnageController $controller) {}
 

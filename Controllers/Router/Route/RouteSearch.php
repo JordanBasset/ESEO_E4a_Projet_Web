@@ -9,8 +9,7 @@ use Controllers\Router\Route;
  * Route for the "Search" page.
  */
 class RouteSearch extends Route {
-	public function __construct(private readonly MainController $controller) {
-	}
+	public function __construct(private readonly MainController $controller) {}
 
 	/**
 	 * @inheritDoc

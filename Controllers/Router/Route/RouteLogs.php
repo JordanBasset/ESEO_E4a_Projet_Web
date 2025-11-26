@@ -4,14 +4,12 @@ namespace Controllers\Router\Route;
 
 use Controllers\MainController;
 use Controllers\Router\Route;
-use Exceptions\MethodNotSupportedException;
 
 /**
  * Route for the "Logs" page.
  */
 final class RouteLogs extends Route {
-	public function __construct(private readonly MainController $controller) {
-	}
+	public function __construct(private readonly MainController $controller) {}
 
 	/**
 	 * @inheritDoc

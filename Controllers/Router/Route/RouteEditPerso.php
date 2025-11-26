@@ -6,6 +6,9 @@ use Controllers\PersonnageController;
 use Controllers\Router\Route;
 use Exceptions\InvalidFormValueException;
 
+/**
+ * Route for the "Edit Character" page.
+ */
 class RouteEditPerso extends Route {
 	public function __construct(private readonly PersonnageController $controller) {}
 
