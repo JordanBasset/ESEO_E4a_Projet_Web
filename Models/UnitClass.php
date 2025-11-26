@@ -3,7 +3,7 @@
 namespace Models;
 
 /**
- * Entity that represents an unit class in the game.
+ * Entity that represents a unit class in the game.
  */
 class UnitClass {
 	/**
