@@ -40,13 +40,13 @@ CREATE TABLE unit_classes (
 
 -- Insert elements into the table
 INSERT INTO elements (name, url_img) VALUES
-('Pyro', 'https://static.wikia.nocookie.net/genshinimpact/images/7/71/Ic%C3%B4ne_Pyro.png'),
-('Hydro', 'https://static.wikia.nocookie.net/genshinimpact/images/2/29/Ic%C3%B4ne_Hydro.png'),
-('Dendro', 'https://static.wikia.nocookie.net/genshinimpact/images/b/b9/Ic%C3%B4ne_Dendro.png'),
-('Électro', 'https://static.wikia.nocookie.net/genshinimpact/images/8/8d/Ic%C3%B4ne_%C3%89lectro.png'),
-('Anémo', 'https://static.wikia.nocookie.net/genshinimpact/images/d/d9/Ic%C3%B4ne_An%C3%A9mo.png'),
-('Cryo', 'https://static.wikia.nocookie.net/genshinimpact/images/4/4e/Ic%C3%B4ne_Cryo.png'),
-('Géo', 'https://static.wikia.nocookie.net/genshinimpact/images/8/86/Ic%C3%B4ne_G%C3%A9o.png');
+('Pyro', 'https://static.wikia.nocookie.net/gensin-impact/images/e/e8/Element_Pyro.png'),
+('Hydro', 'https://static.wikia.nocookie.net/gensin-impact/images/3/35/Element_Hydro.png'),
+('Dendro', 'https://static.wikia.nocookie.net/gensin-impact/images/f/f4/Element_Dendro.png'),
+('Électro', 'https://static.wikia.nocookie.net/gensin-impact/images/7/73/Element_Electro.png'),
+('Anémo', 'https://static.wikia.nocookie.net/gensin-impact/images/a/a4/Element_Anemo.png'),
+('Cryo', 'https://static.wikia.nocookie.net/gensin-impact/images/8/88/Element_Cryo.png'),
+('Géo', 'https://static.wikia.nocookie.net/gensin-impact/images/4/4a/Element_Geo.png');
 
 -- Insert origins into the table
 INSERT INTO origins (name, url_img) VALUES
