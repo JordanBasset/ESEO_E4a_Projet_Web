@@ -72,11 +72,4 @@ final readonly class MainController {
 			'message' => $message,
 		]);
 	}
-
-	/**
-	 * Displays the search page of the application.
-	 */
-	public function displaySearch(): void {
-		echo $this->plates->render('search');
-	}
 }
