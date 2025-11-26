@@ -139,21 +139,25 @@ h1 {
 	}
 }
 
+.btn-outline-primary {
+	border-color: #deb76c !important;
+	color: black !important;
+
+	&:active, &:focus {
+		background-color: #deb76c !important;
+	}
+
+	&:hover {
+		background-color: #deb76c !important;
+		font-weight: bold;
+	}
+}
+
 .form-container {
 	border: 2px solid #deb76c;
 	border-radius: 10px;
 	margin-top: 1.5rem;
 	padding: 15px;
-
-	.btn-outline-primary {
-		border-color: #deb76c;
-		color: black;
-
-		&:hover {
-			background-color: #deb76c;
-			font-weight: bold;
-		}
-	}
 
 	.form-control:focus,
 	.form-select:focus {
