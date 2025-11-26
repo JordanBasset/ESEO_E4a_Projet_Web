@@ -16,6 +16,9 @@ endif;
 			 data-character-id="<?= $character->id ?>"
 			 data-character-rarity="<?= $character->rarity ?>">
 			<nav class="character-actions">
+				<span class="character-rarity">
+					<?= $character->rarity ?> <i class="bi bi-star"></i>
+				</span>
 				<ul>
 					<li class="character-action">
 						<a href="/?action=edit-character&characterId=<?= $character->id ?>">
