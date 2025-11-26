@@ -21,7 +21,7 @@ final readonly class UnitClassController {
 			$this->logger->log(true, 'CREATE', 'UnitClass', 'Created unit class: ' . $name);
 
 			$message = 'Successfully created the unit class.';
-			new MainController($this->plates)->index($message, 'success');
+			new MainController($this->plates, $this->logger)->index($message, 'success');
 		} catch (\PDOException) {
 			$this->logger->log(false, 'CREATE', 'UnitClass', 'Failed to create unit class: ' . $name);
 

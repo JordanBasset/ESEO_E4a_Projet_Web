@@ -36,7 +36,7 @@ final readonly class PersonnageController {
 			$this->logger->log(true, 'CREATE', 'Personnage', 'Created personnage: ' . $name);
 
 			$message = 'Successfully created the character.';
-			new MainController($this->plates)->index($message, 'success');
+			new MainController($this->plates, $this->logger)->index($message, 'success');
 		} catch (\PDOException) {
 			$this->logger->log(false, 'CREATE', 'Personnage', 'Failed to create personnage: ' . $name);
 
@@ -48,7 +48,7 @@ final readonly class PersonnageController {
 	public function deletePersonnageAndIndex(?string $id): void {
 		if (!$id) {
 			$message = 'Character ID is missing.';
-			new MainController($this->plates)->index($message, 'danger');
+			new MainController($this->plates, $this->logger)->index($message, 'danger');
 			return;
 		}
 
@@ -62,7 +62,7 @@ final readonly class PersonnageController {
 		} finally {
 			$this->logger->log($messageType === 'success', 'DELETE', 'Personnage', $message . ' ' . $id);
 
-			new MainController($this->plates)->index($message, $messageType);
+			new MainController($this->plates, $this->logger)->index($message, $messageType);
 		}
 	}
 
@@ -121,7 +121,7 @@ final readonly class PersonnageController {
 			);
 
 			$message = 'Successfully edited the character.';
-			new MainController($this->plates)->index($message, 'success');
+			new MainController($this->plates, $this->logger)->index($message, 'success');
 		} catch (\PDOException) {
 			$this->logger->log(
 				false, 'EDIT', 'Personnage',

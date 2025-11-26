@@ -24,6 +24,26 @@ readonly class Logger {
 		}
 	}
 
+	public function getLogFiles(): array {
+		if (!file_exists($this->logDir)) {
+			return [];
+		}
+
+		$files = scandir($this->logDir) ?: [];
+		return array_filter($files, static fn($file) => str_ends_with($file, '.log'));
+	}
+
+	public function getLogFileContent(string $logFile): array {
+		if (!file_exists($this->logDir . DIRECTORY_SEPARATOR . $logFile)) {
+			return [];
+		}
+
+		return file(
+			$this->logDir . DIRECTORY_SEPARATOR . $logFile,
+			\FILE_IGNORE_NEW_LINES | \FILE_SKIP_EMPTY_LINES
+		) ?: [];
+	}
+
 	private function ensureLogFileExists(string $logPath): void {
 		if (!file_exists($this->logDir) && !mkdir($this->logDir, 0755, true)) {
 			throw new \RuntimeException("Could not create logs directory: $this->logDir");

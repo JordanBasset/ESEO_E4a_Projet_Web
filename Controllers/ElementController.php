@@ -21,7 +21,7 @@ final readonly class ElementController {
 			$this->logger->log(true, 'CREATE', 'Element', 'Created element: ' . $name);
 
 			$message = 'Successfully created the element.';
-			new MainController($this->plates)->index($message, 'success');
+			new MainController($this->plates, $this->logger)->index($message, 'success');
 		} catch (\PDOException) {
 			$this->logger->log(false, 'CREATE', 'Element', 'Failed to create element: ' . $name);
 

@@ -50,7 +50,7 @@ final class Router {
 		$this->controllersList = [
 			'character' => new PersonnageController($this->templates, $this->logger),
 			'element' => new ElementController($this->templates, $this->logger),
-			'main' => new MainController($this->templates),
+			'main' => new MainController($this->templates, $this->logger),
 			'origin' => new OriginController($this->templates, $this->logger),
 			'unit-class' => new UnitClassController($this->templates, $this->logger),
 		];

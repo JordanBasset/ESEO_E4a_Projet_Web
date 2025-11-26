@@ -4,6 +4,7 @@ namespace Controllers\Router\Route;
 
 use Controllers\MainController;
 use Controllers\Router\Route;
+use Exceptions\MethodNotSupportedException;
 
 /**
  * Route for the "Logs" page.
@@ -23,6 +24,7 @@ final class RouteLogs extends Route {
 	 * @inheritDoc
 	 */
 	protected function post(array $params = []) {
-		throw new \RuntimeException('Method not supported');
+		$logFile = $this->getParameter($params, 'log_file', false);
+		$this->controller->displayLogs($logFile);
 	}
 }

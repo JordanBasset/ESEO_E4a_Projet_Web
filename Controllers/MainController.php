@@ -2,12 +2,13 @@
 
 namespace Controllers;
 
+use Helpers\Logger;
 use League\Plates\Engine;
 use Models\PersonnageDAO;
 use Services\PersonnageService;
 
 final readonly class MainController {
-	public function __construct(private Engine $plates) {}
+	public function __construct(private Engine $plates, private Logger $logger) {}
 
 	public function index(?string $message = null, ?string $messageType = null): void {
 		// Test of the newly created DAO class
@@ -28,8 +29,28 @@ final readonly class MainController {
 		]);
 	}
 
-	public function displayLogs(): void {
-		echo $this->plates->render('logs');
+	public function displayLogs(?string $logFile = null): void {
+		$logFiles = $this->logger->getLogFiles();
+		$logData = null;
+		$message = null;
+
+		if ($logFile !== null) {
+			if (!in_array($logFile, $logFiles, true)) {
+				$message = [
+					'type' => 'danger',
+					'message' => 'Cannot find the specified log file.',
+				];
+			} else {
+				$logData = $this->logger->getLogFileContent($logFile);
+			}
+		}
+
+		echo $this->plates->render('logs', [
+			'logData' => $logData,
+			'logFiles' => $logFiles,
+			'logFile' => $logFile,
+			'message' => $message,
+		]);
 	}
 
 	public function displaySearch(): void {

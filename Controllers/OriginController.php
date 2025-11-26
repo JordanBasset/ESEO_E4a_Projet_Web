@@ -21,7 +21,7 @@ final readonly class OriginController {
 			$this->logger->log(true, 'CREATE', 'Origin', 'Created origin: ' . $name);
 
 			$message = 'Successfully created the origin.';
-			new MainController($this->plates)->index($message, 'success');
+			new MainController($this->plates, $this->logger)->index($message, 'success');
 		} catch (\PDOException) {
 			$this->logger->log(false, 'CREATE', 'Origin', 'Failed to create origin: ' . $name);
 
