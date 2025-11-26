@@ -4,6 +4,7 @@ namespace Controllers\Router\Route;
 
 use Controllers\MainController;
 use Controllers\Router\Route;
+use Exceptions\InvalidFormValueException;
 
 /**
  * Route for the "Logs" page.
@@ -22,7 +23,13 @@ final class RouteLogs extends Route {
 	 * @inheritDoc
 	 */
 	protected function post(array $params = []) {
-		$logFile = $this->getParameter($params, 'log_file', false);
+		try {
+			$logFile = $this->getParameter($params, 'log_file', false);
+		} catch (InvalidFormValueException $e) {
+			$this->controller->displayLogs(errorMessage: $e->getMessage());
+			return;
+		}
+
 		$this->controller->displayLogs($logFile);
 	}
 }

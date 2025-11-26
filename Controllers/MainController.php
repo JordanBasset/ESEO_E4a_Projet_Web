@@ -43,7 +43,7 @@ final readonly class MainController {
 	 *
 	 * @param ?string $logFile Optional log file to display contents
 	 */
-	public function displayLogs(?string $logFile = null): void {
+	public function displayLogs(?string $logFile = null, ?string $errorMessage = null): void {
 		$logFiles = $this->logger->getLogFiles();
 		$logData = null;
 		$message = null;
@@ -57,6 +57,12 @@ final readonly class MainController {
 			} else {
 				$logData = $this->logger->getLogFileContent($logFile);
 			}
+		}
+		if ($errorMessage !== null) {
+			$message = [
+				'type' => 'danger',
+				'message' => $errorMessage,
+			];
 		}
 
 		echo $this->plates->render('logs', [
