@@ -3,6 +3,28 @@ main {
 	width: 85%;
 }
 
+header {
+	nav {
+		background-color: #deb76c;
+		margin: 6px;
+		padding: 10px;
+
+		ul {
+			margin-bottom: 0;
+			margin-top: 0;
+
+			li a {
+				color: black;
+				text-decoration: none;
+
+				&:hover {
+					font-weight: bold;
+				}
+			}
+		}
+	}
+}
+
 nav {
 	ul {
 		display: flex;
@@ -40,7 +62,7 @@ h1 {
 		}
 
 		&[data-character-rarity='5'] {
-			background-color: gold;
+			background-color: #deb76c;
 
 			.character-infos,
 			.character-action a {
@@ -107,8 +129,24 @@ h1 {
 }
 
 .form-container {
-	border: 1px solid rgba(0, 0, 0, 0.5);
+	border: 2px solid #deb76c;
 	border-radius: 10px;
 	margin-top: 1.5rem;
 	padding: 15px;
+
+	.btn-outline-primary {
+		border-color: #deb76c;
+		color: black;
+
+		&:hover {
+			background-color: #deb76c;
+			font-weight: bold;
+		}
+	}
+
+	.form-control:focus,
+	.form-select:focus {
+		border-color: #deb76c;
+		box-shadow: 0 0 0 .25rem rgba(222, 183, 108, 0.4);
+	}
 }
