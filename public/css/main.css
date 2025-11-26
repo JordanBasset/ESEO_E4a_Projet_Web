@@ -159,9 +159,13 @@ h1 {
 	margin-top: 1.5rem;
 	padding: 15px;
 
-	.form-control:focus,
-	.form-select:focus {
-		border-color: #deb76c;
-		box-shadow: 0 0 0 .25rem rgba(222, 183, 108, 0.4);
+	.form-control,
+	.form-select {
+		border-color: rgba(222, 183, 108, 0.5);
+
+		&:focus {
+			border-color: #deb76c;
+			box-shadow: 0 0 0 .25rem rgba(222, 183, 108, 0.4);
+		}
 	}
 }
