@@ -31,7 +31,7 @@ class AuthService {
 		}
 
 		$_SESSION['userUID'] = $user->id;
-		$_SESSION['timeout'] = time() + 5 * self::MINUTE_TIME_UNIT;
+		$_SESSION['timeout'] = static::computeTimeout();
 	}
 
 	/**
@@ -47,9 +47,15 @@ class AuthService {
 				session_destroy();
 				return false;
 			}
+
+			$_SESSION['timeout'] = static::computeTimeout();
 			return true;
 		}
 
 		return false;
+	}
+
+	private static function computeTimeout(): int {
+		return time() + 5 * self::MINUTE_TIME_UNIT;
 	}
 }
