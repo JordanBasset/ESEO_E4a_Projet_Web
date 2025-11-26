@@ -17,8 +17,10 @@ use Controllers\Router\Route\RouteIndex;
 use Controllers\Router\Route\RouteLogin;
 use Controllers\Router\Route\RouteLogout;
 use Controllers\Router\Route\RouteLogs;
+use Controllers\Router\Route\RouteSafe;
 use Controllers\UnitClassController;
 use Exceptions\NotFoundException;
+use Exceptions\UnauthorizedException;
 use Helpers\Logger;
 use League\Plates\Engine;
 
@@ -71,6 +73,7 @@ final class Router {
 			'login' => new RouteLogin($this->controllersList['auth']),
 			'logout' => new RouteLogout($this->controllersList['auth']),
 			'logs' => new RouteLogs($this->controllersList['main']),
+			'protected' => new RouteSafe($this->controllersList['main']),
 		];
 	}
 
@@ -80,7 +83,7 @@ final class Router {
 	 * @param array $get List of {@link $_GET GET} parameters
 	 * @param array $post List of {@link $_POST POST} parameters
 	 */
-	public function routing(array $get, array $post) {
+	public function routing(array $get, array $post): void {
 		$action = array_key_exists($this->actionKey, $get) ? $get[$this->actionKey] : 'index';
 		$route = array_key_exists($action, $this->routesList)
 			? $this->routesList[$action]
@@ -90,6 +93,16 @@ final class Router {
 			'GET' => $get,
 			'POST' => [...$get, ...$post],
 		};
-		return $route->action($params, $method);
+
+		try {
+			$route->protectRoute();
+		} catch (UnauthorizedException $e) {
+			/** @var AuthController $authController */
+			$authController = $this->controllersList['auth'];
+			$authController->displayLoginForm($e->getMessage());
+			return;
+		}
+
+		$route->action($params, $method);
 	}
 }

@@ -33,4 +33,23 @@ class AuthService {
 		$_SESSION['userUID'] = $user->id;
 		$_SESSION['timeout'] = time() + 5 * self::MINUTE_TIME_UNIT;
 	}
+
+	/**
+	 * Checks if the visitor is logged in.
+	 *
+	 * @return bool True if the visitor is logged in, false otherwise
+	 */
+	public static function checkLogin(): bool {
+		if (!empty($_SESSION['userUID']) && !empty($_SESSION['timeout'])) {
+			$timeout = $_SESSION['timeout'];
+			if (time() > $timeout) {
+				unset($_SESSION['userUID'], $_SESSION['timeout']);
+				session_destroy();
+				return false;
+			}
+			return true;
+		}
+
+		return false;
+	}
 }

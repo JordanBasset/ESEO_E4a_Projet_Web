@@ -4,11 +4,12 @@ namespace Controllers\Router;
 
 use Exceptions\InvalidFormValueException;
 use Exceptions\MethodNotSupportedException;
+use Services\AuthService;
 
 /**
  * Base class that represents a route for our router.
  */
-abstract class Route {
+abstract class Route implements IRouteSecurity {
 	/**
 	 * Handles the request for this route by redirecting data to the appropriate method.
 	 *
@@ -36,6 +37,23 @@ abstract class Route {
 	 * @param array $params Request parameters
 	 */
 	abstract protected function post(array $params = []);
+
+	/**
+	 * @inheritDoc
+	 */
+	#[\Override]
+	public function isRouteProtected(): bool {
+		return false;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	#[\Override]
+	public function protectRoute(): void {
+		// Check if the visitor is logged in, but don't do anything in both cases
+		AuthService::checkLogin();
+	}
 
 	/**
 	 * Retrieves a parameter from the request parameters.

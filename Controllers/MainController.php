@@ -66,4 +66,11 @@ final readonly class MainController {
 			'message' => $message,
 		]);
 	}
+
+	/**
+	 * Displays the Protected page of the application.
+	 */
+	public function displayProtected(): void {
+		echo $this->plates->render('protected');
+	}
 }
