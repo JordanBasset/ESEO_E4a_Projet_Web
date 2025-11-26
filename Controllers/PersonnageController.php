@@ -14,9 +14,29 @@ use Models\UnitClass;
 use Models\UnitClassDAO;
 use Services\PersonnageService;
 
+/**
+ * Controller that handles {@link Personnage Character}-related operations.
+ */
 final readonly class PersonnageController {
+	/**
+	 * Creates a new instance of the controller.
+	 *
+	 * @param Engine $plates Templates engine instance
+	 * @param Logger $logger Logger instance
+	 */
 	public function __construct(private Engine $plates, private Logger $logger) {}
 
+	/**
+	 * Handles retrieving the "Add Character" form data and
+	 * creating the corresponding character in the database.
+	 *
+	 * @param string $name Character name
+	 * @param int $element Character element ID
+	 * @param int $unitClass Character unit class ID
+	 * @param int $rarity Character rarity (4 or 5 stars)
+	 * @param int $origin Character origin ID
+	 * @param string $imageUrl Character image URL
+	 */
 	public function addPersonnage(string $name, int $element, int $unitClass, int $rarity, int $origin, string $imageUrl): void {
 		$id = uniqid(more_entropy: true);
 
@@ -45,6 +65,11 @@ final readonly class PersonnageController {
 		}
 	}
 
+	/**
+	 * Deletes the given character from the database and redirects to the index page.
+	 *
+	 * @param ?string $id ID of the character to delete
+	 */
 	public function deletePersonnageAndIndex(?string $id): void {
 		if (!$id) {
 			$message = 'Character ID is missing.';
@@ -66,6 +91,11 @@ final readonly class PersonnageController {
 		}
 	}
 
+	/**
+	 * Displays the "Add Character" page.
+	 *
+	 * @param ?string $errorMessage An optional error message to display on the page
+	 */
 	public function displayAddPersonnage(?string $errorMessage = null): void {
 		$gameData = $this->getAllGameData();
 		$viewData = $errorMessage ? ['error' => $errorMessage] : [];
@@ -76,6 +106,12 @@ final readonly class PersonnageController {
 		]);
 	}
 
+	/**
+	 * Displays the "Edit Character" page.
+	 *
+	 * @param string $id ID of the character to edit
+	 * @param ?string $errorMessage An optional error message to display on the page
+	 */
 	public function displayEditPersonnage(string $id, ?string $errorMessage = null): void {
 		$personnageService = new PersonnageService(new PersonnageDAO());
 
@@ -105,6 +141,18 @@ final readonly class PersonnageController {
 		]);
 	}
 
+	/**
+	 * Handles retrieving the "Edit Character" form data and
+	 * updating the corresponding character in the database.
+	 *
+	 * @param string $id Character ID
+	 * @param string $name Character name
+	 * @param int $element Character element ID
+	 * @param int $unitClass Character unit class ID
+	 * @param int $rarity Character rarity (4 or 5 stars)
+	 * @param int $origin Character origin ID
+	 * @param string $urlImg Character image URL
+	 */
 	public function editPersonnage(string $id, string $name, int $element, int $unitClass, int $rarity, int $origin, string $urlImg): void {
 		if ($this->checkForForeignParameters($element, $unitClass, $origin) === null) {
 			return;
